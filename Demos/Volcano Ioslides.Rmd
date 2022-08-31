@@ -1,0 +1,21 @@
+---
+title: "Volcano Ioslides"
+author: "Justin Papreck"
+date: "August 30, 2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Volcano Shaver - Maunga Whau, shaved at 164 meters
+
+```{r, fig.align='center', message = FALSE}
+library(plotly)
+max <- 164
+vvTop <- volcano
+vvTop[vvTop > max] <- max
+
+plot_ly(z = ~vvTop, type = "surface")
+```

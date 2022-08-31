@@ -1,0 +1,10 @@
+name: volcano-shave
+title:
+username:
+account: jrumpelstiltskin
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 413715
+bundleId: 1562412
+url: https://jrumpelstiltskin.shinyapps.io/volcano-shave/
+when: 1535656050.26791

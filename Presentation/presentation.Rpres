@@ -1,0 +1,53 @@
+Shave a Volcano with the Volcano-Shaver app!
+========================================================
+author: Justin R. Papreck
+date: 08-12-2018
+autosize: true
+
+Topographical Visualization
+========================================================
+Using this web-application, you can easily adjust a slider bar to change the maximum altitude of New Zealand's famous volcano, Maungawhau. 
+
+<img src = "volcano.jpg", height = 250, width = 250>
+
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+library(shiny)
+library(plotly)
+library(webshot)
+Top <- volcano
+
+# UI - User interface for the Volcano-Shaver app
+ui <- fluidPage(
+  titlePanel("Shave the Volcano!"),
+  helpText("Adjust the maximum altitude to shave down the peak of Aukland's Maunga Whau volcano to create the ideal seating area for restful meditation. Don't worry, the changes aren't permanent!"),
+  
+  # Show the slider to adjust the maximum altitude in the side panel.  
+  sidebarPanel(
+    sliderInput("altitude", "Maximum Altitude",
+                min = 100, 
+                max = 200, 
+                value = 200), 
+    img(src = "volcano.jpg", height = 140, width = 140)
+  ), 
+  
+  # Print the actual figure in the main panel. 
+  mainPanel(
+    plotlyOutput("plot")
+  )
+)
+
+# SERVER - generate the new dataset using the inputs from the slideer in the UI
+server <- function(input, output) {
+  output$plot <- renderPlotly({
+    Top[Top > input$altitude] <- input$altitude
+    plot_ly(z = ~Top, type = "surface")
+  })
+}
+
+# Run the application
+shinyApp(ui, server)
+```

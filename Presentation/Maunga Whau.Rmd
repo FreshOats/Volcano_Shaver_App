@@ -1,0 +1,35 @@
+---
+title: "Maunga Whau!"
+author: "Justin Papreck"
+date: "August 27, 2018"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+library(ggplot2)
+```
+
+## Maunga Whau
+The volcano Maunga Whau (Mt. Eden) is one of about 50 volcanoes in the Auckland volcanic field. The data from the 'volcano' data set provides topographical information on a 10m x 10m grid for Maunga Whau. If somehow the top of this volcano was shaved off at 180 meters, it would have a nice meditation area. Or at least it looks like I actually did something slightly interesting with the code. :)  
+
+
+```{r topo}
+vTop <- volcano
+vTop[vTop > 180] <- 180
+topo <- plot_ly(z = ~vTop, type = "surface")
+topo
+```
+
+---
+## Flat Top
+If we cut the top down even farther...   
+
+
+```{r topo2}
+vTop <- volcano
+vTop[vTop > 120] <- 120
+topo <- plot_ly(z = ~vTop, type = "surface")
+topo
+```
